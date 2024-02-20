@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Location</string>
+    <string name="locations">Collected Locations</string>
+    <string name="alarm">Alarm</string>
+    <string name="job">Job</string>
+    <string name="worker">Worker</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="time">Time:</string>
+    <string name="collected_method">Collection method:</string>
+    <string name="collected_at">Collected at</string>
+    <string name="clear">Clear all</string>
+    <string name="see_locations">See all collected locations</string>
+    <string name="navigate_back">Navigate back</string>
 </resources>
