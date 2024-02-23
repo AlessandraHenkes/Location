@@ -32,6 +32,8 @@ class LocationUtil(
     @Dispatcher private val coroutineDispatcher: CoroutineDispatcher,
 ) {
 
+    private var startedAt: Long? = null
+
     fun getLocation(
         collectionMethod: LocationCollectionMethod,
         executeAfter: (() -> Unit)? = null
@@ -45,6 +47,7 @@ class LocationUtil(
     suspend fun emitLocation(
         collectionMethod: LocationCollectionMethod,
     ): Boolean {
+        startedAt = System.currentTimeMillis()
         val location = runBlocking { fetchLocation() }
         return if (location != null) {
             insertLocation(location, collectionMethod)
@@ -110,13 +113,15 @@ class LocationUtil(
         collectionMethod: LocationCollectionMethod,
     ) {
         coroutineScope.launch(coroutineDispatcher) {
+            val collectedAt = System.currentTimeMillis()
             locationDao.insert(
                 LocationEntity(
                     latitude = location.latitude,
                     longitude = location.longitude,
                     time = formatTime(location.time),
                     collectionMethod = collectionMethod.toString(),
-                    collectedAt = formatTime(System.currentTimeMillis())
+                    startedAt = formatTime(startedAt ?: collectedAt),
+                    collectedAt = formatTime(collectedAt)
                 )
             )
         }

@@ -91,13 +91,9 @@ private fun Location(location: LocationEntity) {
         LVerticalSpacer(height = 4.dp)
         ItemDescription(description = R.string.collected_method, value = location.collectionMethod)
         LVerticalSpacer(height = 4.dp)
-        ItemDescription(
-            description = R.string.collected_at,
-            value = location.collectedAt,
-            descriptionTextStyle = LTheme.typography.bodySmallStrong,
-            valueTextStyle = LTheme.typography.bodySmallStrong,
-            textColor = LTheme.colors.text,
-        )
+        SmallerItemDescription(description = R.string.started_at, value = location.startedAt)
+        LVerticalSpacer(height = 4.dp)
+        SmallerItemDescription(description = R.string.collected_at, value = location.collectedAt)
         LVerticalSpacer(height = 8.dp)
         Divider(color = LTheme.colors.accent)
     }
@@ -126,6 +122,20 @@ private fun ItemDescription(
     }
 }
 
+@Composable
+private fun SmallerItemDescription(
+    @StringRes description: Int,
+    value: String,
+) {
+    ItemDescription(
+        description = description,
+        value = value,
+        descriptionTextStyle = LTheme.typography.bodySmallStrong,
+        valueTextStyle = LTheme.typography.bodySmallStrong,
+        textColor = LTheme.colors.text,
+    )
+}
+
 @Preview
 @Composable
 fun LocationsScreenPreview() {
@@ -142,6 +152,7 @@ fun LocationsScreenPreview() {
                         longitude = 15.00,
                         time = "16/02/2024 12:03:03:03",
                         collectionMethod = "Alarm",
+                        startedAt = "16/02/2024 12:03:00:00",
                         collectedAt = "16/02/2024 12:03:03:03"
                     )
                 ),

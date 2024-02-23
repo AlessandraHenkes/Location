@@ -13,5 +13,6 @@ data class LocationEntity(
     @ColumnInfo("longitude") val longitude: Double,
     @ColumnInfo("time") val time: String,
     @ColumnInfo("collection_method") val collectionMethod: String,
+    @ColumnInfo("started_at") val startedAt: String,
     @ColumnInfo("collected_at") val collectedAt: String,
 )
