@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,6 +33,7 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
+    val state = rememberScrollState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -40,7 +43,8 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(all = 16.dp),
+                .padding(all = 16.dp)
+                .verticalScroll(state),
             verticalArrangement = Arrangement.SpaceAround,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
@@ -60,6 +64,13 @@ fun HomeScreen(
                     LocationWorker.start(context)
                 },
                 onStop = { LocationWorker.stop(context) },
+            )
+            Option(
+                option = R.string.worker_periodic,
+                onStart = {
+                    LocationWorker.start(appContext = context, isPeriodic = true)
+                },
+                onStop = { LocationWorker.stop(appContext = context, isPeriodic = true) },
             )
             LButton(
                 text = stringResource(id = R.string.see_locations),

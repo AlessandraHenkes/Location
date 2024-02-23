@@ -6,6 +6,7 @@ import com.google.android.gms.location.LocationServices
 import com.henkes.location.data.AppDatabase
 import com.henkes.location.data.dao.LocationDao
 import com.henkes.location.service.LocationUtil
+import com.henkes.location.service.PermissionsUtil
 import com.henkes.location.service.alarm.AlarmScheduler
 import com.henkes.location.service.alarm.LocationAlarmScheduler
 import com.henkes.location.service.job.LocationJobScheduler
@@ -88,5 +89,11 @@ object LocationModule {
     fun providesJobScheduler(
         @ApplicationContext context: Context
     ) = LocationJobScheduler(context)
+
+    @Provides
+    @Singleton
+    fun providesPermissionsUtil(
+        @ApplicationContext context: Context
+    ) = PermissionsUtil(context)
 
 }

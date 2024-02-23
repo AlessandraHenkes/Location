@@ -4,6 +4,7 @@
     <string name="alarm">Alarm</string>
     <string name="job">Job</string>
     <string name="worker">Worker</string>
+    <string name="worker_periodic">Worker periodic (15 minutes)</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="latitude">Latitude:</string>
